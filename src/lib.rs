@@ -4,12 +4,14 @@ mod complex;
 mod matrix;
 mod ohms_law;
 mod physics_1;
+mod refraction_law;
 mod vector2d;
 
 pub use complex::ComplexNum;
 pub use matrix::{Matrix, matmul};
 pub use ohms_law::ohms_law_calc;
 pub use physics_1::f_ma;
+pub use refraction_law::snells_law_calc;
 pub use vector2d::{Vector2D, from_angle_deg, from_angle_rad, projection_angle};
 
 #[pymodule]
@@ -21,5 +23,6 @@ fn math_lib(m: &Bound<'_, PyModule>) -> PyResult<()> {
     m.add_function(wrap_pyfunction!(from_angle_rad, m)?)?;
     m.add_function(wrap_pyfunction!(projection_angle, m)?)?;
     m.add_function(wrap_pyfunction!(ohms_law_calc, m)?)?;
+    m.add_function(wrap_pyfunction!(snells_law_calc, m)?)?;
     Ok(())
 }
